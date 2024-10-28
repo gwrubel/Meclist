@@ -11,7 +11,7 @@ class AuthAdmService {
     const adm = await prismaClient.admin.findFirst({
       where: {
         email: email,
-      },
+      }
     });
 
     //verifica se o email existe
@@ -25,6 +25,8 @@ class AuthAdmService {
     if (!senhaEIgual) {
       throw new Error("Email/senha incorretos");
     }
+
+    return adm.email;
   }
 }
 
