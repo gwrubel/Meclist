@@ -16,7 +16,7 @@ class AuthAdmService {
 
     //verifica se o email existe
     if (!adm) {
-      throw new Error("Email/senha incorretos");
+      throw new Error("E-mail/senha incorretos");
     }
 
     //verifica se a senha esta correta

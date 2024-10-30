@@ -1,0 +1,78 @@
+.cadastro-mecanico-container {
+    padding: 20px;
+    margin: 40px;
+    border: 2px solid #898989;
+    background-color: #89898928;
+}
+
+h1{
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+.mecanico-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.mecanico-options button {
+    padding: 10px 15px;
+    background-color: #ff7f00; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.mecanico-options button:hover {
+    background-color: #d76b00;
+}
+.mecanico-filtros {
+    display: flex;
+    gap: 15px; 
+    align-items: center;
+}
+
+.mecanico-filtros select,
+.mecanico-filtros input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.mecanico-filtros select:disabled {
+    background-color: #f5f5f5; /* Cor de fundo quando desabilitado */
+}
+
+.mecanico-table {
+    margin-top: 20px;
+    overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+}
+
+.mecanico-table table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaçamento entre as bordas */
+}
+
+.mecanico-table th,
+.mecanico-table td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Bordas da tabela */
+    text-align: left;
+}
+
+.mecanico-table th {
+    background-color: #898989; /* Cor de fundo dos cabeçalhos */
+}
+
+.mecanico-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alterna a cor de fundo das linhas pares */
+}
+
+.mecanico-table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+button i {
+    margin-right: 8px; /* Espaçamento entre o ícone e o texto */
+    font-size: 30px; /* Tamanho do ícone */
+}

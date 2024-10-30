@@ -1,0 +1,84 @@
+.header-container {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ff7f00;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#logo span {
+    color: black;
+}
+
+.header {
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 90%;
+    background-color: #898989;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    
+}
+
+.nav-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.nav-container a,
+.nav-container select {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    
+}
+
+.nav-container select{
+    outline: none;
+    background-color: #898989;
+    width: 87px;
+    background-position: right 10px center;
+    color: white;
+    
+}
+
+.user{
+    margin-right: 10px;
+}
+.user select{
+    outline: none;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #898989;
+    background-position: right 10px center;
+    color: white;
+    
+}
+
+.header a:hover ,
+.header select:hover {
+    text-decoration: underline;
+}

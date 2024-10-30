@@ -13,6 +13,7 @@ class CreateMecanicoService {
     async execute({ nome, email, celular, senha }: MecanicoRequest) {
         if(!nome || !email || !celular || !senha) {
             throw new Error("todos os campos são obrigatórios");
+            
         }
 
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { FiMail, FiLock } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import './LoginScreen.css';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,6 +29,9 @@ function LoginScreen() {
       if (data.success) {
         console.log('Login bem-sucedido!', data);
         // Aqui você pode redirecionar o usuário ou salvar o token no localStorage
+
+        navigate('/dashboard');
+
       } else {
         setErrorMessage(data.message || 'Credenciais inválidas');
       }

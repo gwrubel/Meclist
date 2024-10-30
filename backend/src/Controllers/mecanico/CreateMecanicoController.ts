@@ -7,15 +7,26 @@ class CreateMecanicoController {
 
         const createMecanicoService = new CreateMecanicoService();
 
-        const mecanico = await createMecanicoService.execute({
-            nome,
-            email,            
-            celular,
-            senha
-        }
-    );
+        try {
+            const mecanico = await createMecanicoService.execute({
+                nome,
+                email,            
+                celular,
+                senha
+            });
 
-        return res.json(mecanico);
+            return res.status(200).json({
+                success: true,
+                message: 'Cadastro realizado!',
+                data: mecanico
+            })
+    
+        } catch(error: Error | any){
+            return res.status(400).json({
+                success: false,
+                message: error.message || "Erro ao cadastrar mecanico!",
+            })
+        }
     }
 }
 
