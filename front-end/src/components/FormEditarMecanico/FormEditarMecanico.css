@@ -1,0 +1,62 @@
+.input-container-edit input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.input-container-edit input:focus {
+    outline: none;
+    border-color: #ff7f00;
+}
+
+#salvar{
+    padding: 10px;
+    background-color: #ff7f00;
+    width: 150px;
+    border: solid 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: white;
+}
+
+#salvar:hover{
+    background-color: #e17102;
+}
+
+#excluir-mecanico {
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    color: white;
+    border: solid 3px rgba(0, 0, 0, 0.1);
+    
+}
+#excluir-mecanico:hover{
+    background-color:  rgb(212, 2, 2);
+}
+
+#excluir-mecanico span{
+    margin: 7px;
+    font-weight: bold;
+}
+
+.cabecalho-edit{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    
+}
+
+#cancelar{
+    color: white;
+    background-color: #898989;
+}
+
+#cancelar:hover{
+    background-color: #747474;
+}
+

@@ -12,9 +12,17 @@ class ListClienteService {
                 email: true,
                 celular: true,
                 endereco: true,
-                ativo: true
+                ativo: true,
+                 _count:{
+                    select: {
+                        veiculos: true,
+                    }
+                 }
             }
+
+            
         });
+        
         return clientes;
 }   
 }

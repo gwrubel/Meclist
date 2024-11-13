@@ -95,3 +95,9 @@
     font-size: 14px;
     margin: 10px;
 }
+
+#verSenha{
+    cursor: pointer;
+    border:none;
+    background-color: transparent;
+}

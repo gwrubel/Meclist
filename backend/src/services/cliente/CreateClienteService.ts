@@ -1,6 +1,8 @@
 import { hash } from "bcryptjs";
 import prismaClient from "../../prisma";
 import validator from "validator";
+import { validarCPF } from "../../utils/ValidatorCPF";
+
 
 interface ClienteRequest {
     nome: string;
@@ -19,12 +21,16 @@ class CreateClienteService {
 
         //verificar se o email é valido
         if (!validator.isEmail(email)) {
-            throw new Error("email inválido");
+            throw new Error("E-mail inválido");
+        }
+
+        if (!validarCPF(cpf)) {
+            throw new Error("CPF inválido");
         }
 
         //verificar se o celular é valido
         if (!validator.isMobilePhone(celular, ["pt-BR"])) {
-            throw new Error("celular inválido");
+            throw new Error("Celular inválido");
         }
 
         //verifica se o email ja existe
@@ -35,7 +41,7 @@ class CreateClienteService {
         });
 
         if (emailExiste) {
-            throw new Error("email ja cadastrado");
+            throw new Error("E-mail já cadastrado!");
         }
 
         const passwordHas = await hash(senha,8);

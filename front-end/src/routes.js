@@ -4,6 +4,8 @@ import LoginScreen from "./pages/Login/LoginScreen";
 import Dashboard from "./pages/Home/Dashboard";
 import Header from "./components/Header/Header";
 import CadastroMecanico from "./pages/CadastroMecanico/CadastroMecanico";
+import PrivateRoute from "./PrivateRoute";
+import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
 
 
 function RoutesApp() {
@@ -11,18 +13,35 @@ function RoutesApp() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LoginScreen />} />
+
                 <Route
                     path="/dashboard"
-                    element={<>
-                        <Header />
-                        <Dashboard /></>}
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <Dashboard />
+                        </PrivateRoute>
+                    }
                 />
 
                 <Route
                     path="/cadastro-mecanico"
-                    element={<>
-                        <Header />
-                        <CadastroMecanico /></>}
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <CadastroMecanico />
+                        </PrivateRoute>
+                    }
+                />
+
+                <Route
+                    path="/cadastro-cliente"
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <CadastroCliente />
+                        </PrivateRoute>
+                    }
                 />
 
             </Routes>

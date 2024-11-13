@@ -24,12 +24,10 @@
     border-radius: 10px;
     width: 90%;
     background-color: #898989;
-    padding: 10px;
+    padding: 15px; /* Removido padding extra */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    
 }
 
 .nav-container {
@@ -38,47 +36,68 @@
     align-items: center;
 }
 
-
-.nav-container a,
-.nav-container select {
+.nav-container a {
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    background: none;
-    border: none;
     font-size: 1em;
     cursor: pointer;
-    
 }
 
-.nav-container select{
-    outline: none;
-    background-color: #898989;
-    width: 87px;
-    background-position: right 10px center;
-    color: white;
-    
-}
-
-.user{
-    margin-right: 10px;
-}
-.user select{
-    outline: none;
+/* Estilo para o botão do dropdown */
+.dropdown button {
     color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
     background: none;
     border: none;
+    font-weight: 600;
     font-size: 1em;
     cursor: pointer;
-    background-color: #898989;
-    background-position: right 10px center;
-    color: white;
-    
 }
 
-.header a:hover ,
-.header select:hover {
-    text-decoration: underline;
+/* Estilo para a lista do dropdown */
+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #898989; /* Cor de fundo do dropdown */
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Fica acima de outros elementos */
+    margin-top: 5px; /* Espaço entre o botão e o dropdown */
+    border-radius: 5px;
+    margin: auto;
+    
+   
+}
+
+/* Estilo para cada item do dropdown */
+.dropdown-menu div {
+    padding: 10px;
+    color: #ffffff; /* Cor do texto dos itens */
+    cursor: pointer;
+    transition: background-color 0.2s; /* Transição suave para hover */
+}
+
+/* Efeito de hover nos itens do dropdown */
+.dropdown-menu div:hover {
+  text-decoration: underline;
+}
+
+.user {
+    margin-right: 20px;
+}
+
+.user button {
+    color: #ffffff;
+    background: none;
+    border: none;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Efeitos de hover para links e botões */
+.header a:hover,
+.dropdown button:hover {
+    text-decoration: underline; /* Sublinha no hover */
 }

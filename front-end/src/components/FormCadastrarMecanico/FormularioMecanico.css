@@ -30,7 +30,9 @@
     border-radius: 4px; /* Bordas arredondadas */
 }
 
-
+.formulario-mecanico select{
+    cursor: pointer;
+}
 
 .overlay {
     position: fixed; /* Fica fixo na tela */
@@ -53,6 +55,7 @@
 }
 
 #cancelar {
+    cursor: pointer;
     background-color: red;
     padding: 10px;
     width: 100px;
@@ -75,10 +78,7 @@
     background-color: #e17102;
 }
 
-.input-container {
-    margin-bottom: 15px;
-    position: relative;
-}
+
 
 .input-container label {
     display: block;
@@ -93,3 +93,17 @@
     margin-top: -10px; /* Espaçamento pequeno entre o input e a mensagem de erro */
     display: block;
 }
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #ff7f00;
+}
+

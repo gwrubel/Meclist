@@ -1,33 +1,43 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react'; // Importando useState e useEffect
+import { useState, useEffect } from 'react';
 import './Header.css';
+import { jwtDecode } from 'jwt-decode';
 
 function Header() {
   const navigate = useNavigate();
-  const [selectedCadastro, setSelectedCadastro] = useState(""); // Estado para o select de cadastro
-  const [selectedUser, setSelectedUser] = useState(""); // Estado para o select do usuário
+  const [nome, setnome] = useState('');
+  
+  // State para gerenciar os dropdowns
+  const [isCadastroOpen, setCadastroOpen] = useState(false);
+  const [isUserOpen, setUserOpen] = useState(false);
 
-  const handleSelectChangeCadastro = (event) => {
-    const selectedOption = event.target.value;
-    setSelectedCadastro(selectedOption); // Atualiza o estado
-    if (selectedOption) {
-      navigate(selectedOption); // Redireciona para a rota selecionada
-    }
-  };
-
-  const handleSelectChangeUser = (event) => {
-    const selectedOption = event.target.value;
-    setSelectedUser(selectedOption); // Atualiza o estado
-    if (selectedOption) {
-      navigate(selectedOption); // Redireciona para a rota selecionada
-    }
-  };
-
-  // Redefinindo o estado quando a rota muda
   useEffect(() => {
-    setSelectedCadastro(""); // Reseta o select de cadastro
-    setSelectedUser(""); // Reseta o select do usuário
-  }, [navigate]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setnome(decodedToken.name);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUserOpen(false);
+    navigate("/"); 
+  };
+
+  const handleOptionClick = (option) => {
+    navigate(option);
+    setCadastroOpen(false); // Fecha o dropdown após selecionar
+  };
+
+  const handleUserOptionClick = (option) => {
+    if (option === "/sair") {
+      handleLogout();
+    } else {
+      navigate(option);
+    }
+    setUserOpen(false); // Fecha o dropdown após selecionar
+  };
 
   return (
     <div className='header-container'>
@@ -39,19 +49,32 @@ function Header() {
         <div className="nav-container">
           <NavLink to="/dashboard">Início</NavLink>
           <NavLink to="/servicos">Serviços</NavLink>
-          <select onChange={handleSelectChangeCadastro} value={selectedCadastro}>
-            <option value="" disabled>Cadastro</option>
-            <option value="/cadastro-mecanico">Cadastro de Mecânico</option>
-            <option value="/cadastro-cliente">Cadastro de Cliente</option>
-          </select>
+
+          <div className="dropdown">
+            <button onClick={() => setCadastroOpen(!isCadastroOpen)}>
+              Cadastro
+            </button>
+            {isCadastroOpen && (
+              <div className="dropdown-menu">
+                <div onClick={() => handleOptionClick("/cadastro-mecanico")}>Cadastro de Mecânico</div>
+                <div onClick={() => handleOptionClick("/cadastro-cliente")}>Cadastro de Cliente</div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className='user'>
-          <select onChange={handleSelectChangeUser} value={selectedUser}>
-            <option value="" disabled>Nome do usuário</option>   {/* nome do usuario */}
-            <option value="/configuracao">Configurações</option>
-            <option value="/sair">Sair</option>
-          </select>
+          <div className="dropdown">
+            <button onClick={() => setUserOpen(!isUserOpen)}>
+              {nome || "Usuário"}
+            </button>
+            {isUserOpen && (
+              <div className="dropdown-menu">
+                <div onClick={() => handleUserOptionClick("/configuracao")}>Configurações</div>
+                <div onClick={() => handleUserOptionClick("/sair")}>Sair</div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
     </div>

@@ -1,5 +1,7 @@
 import prismaClient from "../../prisma";
 import { compare } from "bcryptjs";
+import {sign} from "jsonwebtoken";
+
 
 interface AuthAdmRequest {
   email: string;
@@ -26,7 +28,21 @@ class AuthAdmService {
       throw new Error("Email/senha incorretos");
     }
 
-    return adm.email;
+    //se deu tudo certo gera o token 
+    const token = sign({
+      name: adm.nome,
+      email: adm.email,
+    }, process.env.JWT_SECRET, {
+      subject: adm.id_adm.toString(),
+      expiresIn: '30d',
+    });
+
+    return {
+      id: adm.id_adm,
+      name: adm.nome,
+      email: adm.email,
+      token: token
+    }
   }
 }
 

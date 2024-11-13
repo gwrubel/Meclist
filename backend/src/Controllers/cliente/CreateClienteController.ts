@@ -8,16 +8,31 @@ class CreateClienteController {
 
         const createClienteService = new CreateClienteService();
 
-        const cliente = await createClienteService.execute({
-            nome,
-            cpf,
-            endereco,
-            celular,
-            email,
-            senha
-        });
+        try {
+            const cliente = await createClienteService.execute({
+                nome,
+                cpf,
+                endereco,
+                celular,
+                email,
+                senha
+            });
+    
+            
 
-        return res.json(cliente);
+            return res.status(200).json({
+                success: true,
+                message: 'Cadastro realizado!',
+                data: cliente
+            })
+    
+        } catch(error: Error | any){
+            return res.status(400).json({
+                success: false,
+                message: error.message || "Erro ao cadastrar cliente!",
+            })
+        }
+       
     }
 
 }    

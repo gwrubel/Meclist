@@ -6,6 +6,7 @@ export class ListMecanicoController {
     async handle(req: Request, res: Response) : Promise<Response> { 
         const listMecanicoService = new ListMecanicoService();
 
+        
         try {
             const mecanicos = await listMecanicoService.execute();
             return res.json(mecanicos);

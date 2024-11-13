@@ -1,4 +1,4 @@
-.cadastro-mecanico-container {
+.cadastro-cliente-container {
     padding: 20px;
     margin: 40px;
     border: 2px solid #898989;
@@ -9,13 +9,13 @@ h1{
     margin-bottom: 20px;
     font-size: 24px;
 }
-.mecanico-options {
+.cliente-options {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
 }
 
-.mecanico-options button {
+.cliente-options button {
     padding: 10px 15px;
     background-color: #ff7f00; 
     color: white;
@@ -23,56 +23,56 @@ h1{
     border-radius: 4px;
     cursor: pointer;
 }
-.mecanico-options button:hover {
+.cliente-options button:hover {
     background-color: #d76b00;
 }
-.mecanico-filtros {
+.cliente-filtros {
     display: flex;
     gap: 15px; 
     align-items: center;
 }
 
-.mecanico-filtros select,
-.mecanico-filtros input {
+.cliente-filtros select,
+.cliente-filtros input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.mecanico-filtros select:disabled {
+.cliente-filtros select:disabled {
     background-color: #f5f5f5; /* Cor de fundo quando desabilitado */
 }
 
-.mecanico-table {
+.cliente-table {
     margin-top: 20px;
     overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
 }
 
-.mecanico-table table {
+.cliente-table table {
     width: 100%;
     border-collapse: collapse; /* Remove o espaçamento entre as bordas */
 }
 
-.mecanico-table th,
-.mecanico-table td {
+.cliente-table th,
+.cliente-table td {
     padding: 10px;
     border: 1px solid #ddd; /* Bordas da tabela */
     
 }
 
-.mecanico-table th {
+.cliente-table th {
     background-color: #898989; /* Cor de fundo dos cabeçalhos */
 }
 
-.mecanico-table tr:nth-child(even) {
+.cliente-table tr:nth-child(even) {
     background-color: #f9f9f9; /* Alterna a cor de fundo das linhas pares */
 }
 
-.mecanico-table tr:hover {
+.cliente-table tr:hover {
     background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
 }
 
-.mecanico-options i {
+.cliente-options i {
     margin-right: 8px; /* Espaçamento entre o ícone e o texto */
     font-size: 15px; /* Tamanho do ícone */
 }
@@ -84,13 +84,13 @@ h1{
 #editar{
     padding: 2px 6px;
     border-radius: 10px;
-    background-color: #ff7f00; 
+    background-color: #000000; 
     color: white;
     border: none;
 }
 
 #editar:hover{
-    background-color: #d76b00;
+    background-color: #27211d;
     cursor: pointer;
 }
 
@@ -98,3 +98,20 @@ h1{
     color: white;
     font-size: 15px;
 }
+
+#coluna-veiculos {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Ajuste o espaço entre o número e os ícones */
+    font-size: 16px; /* Define um tamanho base para o conteúdo */
+}
+
+#coluna-veiculos i {
+    font-size: 14px; /* Define um tamanho menor para os ícones */
+    color: #000000; /* Cor do ícone */
+    margin-left: -8px; /* Ajuste fino para compactar */
+    cursor: pointer;
+}
+
+

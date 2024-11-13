@@ -1,0 +1,109 @@
+
+.formulario-cliente {
+    background-color: rgb(255, 255, 255); 
+    border-radius: 8px;
+    border: solid 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px 40px; /* Espaçamento interno */
+    max-width: 600px; 
+    min-width: 400px;
+    margin: 20px auto; 
+    position: relative; /* Para o posicionamento do botão */
+    width: 600px;
+    
+}
+
+.formulario-cliente h2 {
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+.formulario-cliente label {
+    display: block; 
+    margin-bottom: 5px;
+}
+
+.formulario-cliente input,
+.formulario-cliente select {
+    width: 100%; /* Largura total para inputs e selects */
+    padding: 8px; /* Espaçamento interno */
+    margin-bottom: 20px; /* Espaço abaixo de cada campo */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+.formulario-cliente select{
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed; /* Fica fixo na tela */
+    top: 0; /* Parte superior */
+    left: 0; /* Lado esquerdo */
+    right: 0; /* Lado direito */
+    bottom: 0; /* Parte inferior */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+    display: flex; /* Para centralizar o formulário */
+    justify-content: center; /* Alinhamento horizontal */
+    align-items: center; /* Alinhamento vertical */
+    z-index: 999; /* Fica acima de outros elementos */
+}
+
+.form-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cancelar {
+    cursor: pointer;
+    background-color: red;
+    padding: 10px;
+    width: 100px;
+    border: solid 3px rgba(0, 0, 0, 0.1);
+    
+}
+
+#cancelar:hover{
+    background-color: rgb(237, 2, 2);
+}
+
+#enviar {
+    padding: 10px;
+    background-color: #ff7f00;
+    width: 150px;
+    border: solid 3px rgba(0, 0, 0, 0.1);
+}
+
+#enviar:hover{
+    background-color: #e17102;
+}
+
+
+
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.error-message {
+    color: rgb(255, 0, 0);
+    font-size: 14px;
+    margin: 0;
+    margin-top: -10px; /* Espaçamento pequeno entre o input e a mensagem de erro */
+    display: block;
+}
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #ff7f00;
+}
