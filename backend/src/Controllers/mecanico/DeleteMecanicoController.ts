@@ -1,4 +1,4 @@
-import e, { Response, Request } from "express";
+import  { Response, Request } from "express";
 import { DeleteMecanicoService } from "../../services/mecanico/DeleteMecanicoService";
 
 class DeleteMecanicoController {

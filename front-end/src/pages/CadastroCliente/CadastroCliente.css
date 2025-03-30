@@ -114,4 +114,17 @@ h1{
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+}
 
+#nome-cliente::first-letter{
+   text-transform: uppercase;
+}   
+
+#add-veiculo{
+    border: none;
+    cursor: pointer;
+}

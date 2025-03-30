@@ -1,9 +1,6 @@
 import { hash } from "bcryptjs";
-import prismaClient from "../../prisma";
-import validator from "validator";
-import { validarCPF } from "../../utils/ValidatorCPF";
-
-
+import { Cliente } from "../../models/Cliente";
+import { IClienteRepository } from "../../interface/IClienteRepository";
 interface ClienteRequest {
     nome: string;
     cpf: string;
@@ -13,60 +10,31 @@ interface ClienteRequest {
     celular: string;
 }
 
-class CreateClienteService {
-    async execute({nome,cpf,endereco,email,senha,celular}: ClienteRequest) {
-        if (!nome || !cpf || !endereco || !email || !senha) {
-            throw new Error("todos os campos são obrigatorios");
-        }
 
-        //verificar se o email é valido
-        if (!validator.isEmail(email)) {
-            throw new Error("E-mail inválido");
-        }
+export class CreateClienteService {
+  
+    private clienteRepository: IClienteRepository;
 
-        if (!validarCPF(cpf)) {
-            throw new Error("CPF inválido");
-        }
-
-        //verificar se o celular é valido
-        if (!validator.isMobilePhone(celular, ["pt-BR"])) {
-            throw new Error("Celular inválido");
-        }
-
-        //verifica se o email ja existe
-        const emailExiste = await prismaClient.cliente.findFirst({
-            where: {
-                email: email,
-            },
-        });
-
-        if (emailExiste) {
-            throw new Error("E-mail já cadastrado!");
-        }
-
-        const passwordHas = await hash(senha,8);
-
-        const cliente = await  prismaClient.cliente.create({
-            data: {
-                nome: nome,
-                cpf: cpf,
-                endereco: endereco,
-                celular: celular,
-                senha:passwordHas,
-                email: email
-            },
-            select:{
-                id_cliente: true,
-                nome: true,
-                email: true,
-                celular: true,
-                endereco: true,
-                ativo: true 
-            }
-        });
-
-        return cliente;
+    constructor(clienteRepository: IClienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
+
+   
+  async execute({ nome, cpf, endereco, email, senha, celular }: ClienteRequest) {
+    
+
+    // Verificar se o email já existe
+    const emailExiste = await this.clienteRepository.buscarPorEmail(email);
+    if (emailExiste) throw new Error("E-mail já cadastrado!");
+
+    // Gerar hash da senha
+    const senhaHash = await hash(senha, 8);
+
+    // Criar instância do cliente
+    const cliente = new Cliente({ nome, cpf, endereco, celular, email, senha: senhaHash });
+
+    // Salvar no banco
+    return await this.clienteRepository.criar(cliente);
+  }
 }
 
-export { CreateClienteService };

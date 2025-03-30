@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { EditClienteService } from "../../services/cliente/EditClienteService";
+import { ClienteRepository } from "../../repository/ClienteRepository";
 
 class EditClienteController {
 
@@ -14,7 +15,8 @@ class EditClienteController {
             });
         }
 
-        const editClienteService = new EditClienteService();
+        const clienteRepository =  new ClienteRepository();
+        const editClienteService = new EditClienteService(clienteRepository);
 
         try {
             // Verifica se o ID é um número válido

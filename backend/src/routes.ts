@@ -14,8 +14,9 @@ import { SeeMecanicoController } from "./Controllers/mecanico/SeeMecanicoControl
 import { DeleteMecanicoController } from "./Controllers/mecanico/DeleteMecanicoController";
 import { EditClienteController } from "./Controllers/cliente/EditClienteController";
 import { SeeClienteController } from "./Controllers/cliente/SeeClienteController";
-
-
+import { DeleteVeiculoController } from "./Controllers/veiculo/DeleteVeiculoController";
+import { SeeAllChecklistController } from "./Controllers/Checklist/SeeAllChecklistController";
+import { AlterStatusController } from "./Controllers/Checklist/AlterStatusController";
 
 
 const router = Router();
@@ -42,4 +43,14 @@ router.put('/clientes/:id', new EditClienteController().handle)//alteração de 
 // Veículo
 router.post('/clientes/:id/veiculos', new CreateVeiculoController().handle); // Criação de veículo para um cliente específico
 router.get('/clientes/:id/veiculos', new ListVeiculosClienteController().handle); // Listar veículos para um cliente específico
+router.delete('/clientes/:id_cliente/veiculos/:id_veiculo', new DeleteVeiculoController().handle)// validar se e necessarion a exclusao
+
+
+
+//checklist
+router.get('/checklist', new SeeAllChecklistController().handle)
+router.put('/checklist/status/:id_checklist', new AlterStatusController().handle)//alterar status do checklist
+
+
+
 export { router };

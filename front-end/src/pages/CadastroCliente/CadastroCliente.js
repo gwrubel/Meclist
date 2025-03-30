@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import './CadastroCliente.css'
+import { Link } from "react-router-dom";
+import './CadastroCliente.css';
 import FormCadastrarCliente from '../../components/FormCadastrarCliente/FormCadastrarCliente';
 import FormEditarCliente from '../../components/FormEditarCliente/FormEditarCliente';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddVeiculo from '../../components/AddVeiculo/AddVeiculo';
 
 function CadastroCliente() {
   const [clientes, setClientes] = useState([]);
@@ -11,8 +13,10 @@ function CadastroCliente() {
   const [error, setError] = useState(null);
   const [situacao, setSituacao] = useState("");
   const [busca, setBusca] = useState("");
-  const [isFormVisible, setIsFormVisible] = useState(false); // Estado para controle do formulário
+  const [isFormVisible, setIsFormVisible] = useState(false); // Controle do formulário de cliente
+  const [isAddVeiculoVisible, setIsAddVeiculoVisible] = useState(false); // Controle do formulário de veículo
   const [clienteSelecionado, setClienteSelecionado] = useState(null);
+
   const buscarClientes = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -26,7 +30,6 @@ function CadastroCliente() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-
       });
       if (!response.ok) {
         throw new Error("Erro ao buscar dados");
@@ -48,21 +51,43 @@ function CadastroCliente() {
     setBusca(event.target.value);
   };
 
-
-  const filteredClientes = clientes.filter((clientes) => {
+  const filteredClientes = clientes.filter((cliente) => {
     const matchesSituacao = situacao
-      ? clientes.ativo === (situacao === "Ativo")
+      ? cliente.ativo === (situacao === "Ativo")
       : true;
-    const matchesSearchTerm = clientes.nome
+    const matchesSearchTerm = cliente.nome
       .toLowerCase()
       .includes(busca.toLowerCase());
     return matchesSituacao && matchesSearchTerm;
   });
+
   const fecharFormulario = () => {
     setIsFormVisible(false);
     setClienteSelecionado(null);
     buscarClientes();
   };
+
+  const abrirAddVeiculo = (cliente) => {
+    setClienteSelecionado(cliente);
+    setIsAddVeiculoVisible(true);
+  };
+
+  const fecharAddVeiculo = () => {
+    setIsAddVeiculoVisible(false);
+    setClienteSelecionado(null);
+    buscarClientes();
+  };
+
+  const notSuccess = (message) => {
+    toast.success(message);
+    fecharFormulario();
+  };
+
+  const editarCliente = (cliente) => {
+    setClienteSelecionado(cliente);
+    setIsFormVisible(true);
+  };
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -70,16 +95,7 @@ function CadastroCliente() {
   if (error) {
     return <div>Erro: {error}</div>;
   }
-  const notSuccess = (message) => {
-    toast.success(message);
-    fecharFormulario(); // Fechar o formulário
-  };
 
-
-  const editarCliente = (cliente) => {
-    setClienteSelecionado(cliente);
-    setIsFormVisible(true);
-  };
   return (
     <div className='cadastro-cliente-container'>
       <h1>Clientes</h1>
@@ -102,6 +118,15 @@ function CadastroCliente() {
           ) : (
             <FormCadastrarCliente onClose={fecharFormulario} />
           )}
+        </div>
+      )}
+
+      {isAddVeiculoVisible && clienteSelecionado && (
+        <div className="overlay">
+          <AddVeiculo
+            cliente={clienteSelecionado} // Passando o id_cliente completo
+            onClose={fecharAddVeiculo} // Função para fechar o modal
+          />
         </div>
       )}
 
@@ -129,7 +154,7 @@ function CadastroCliente() {
           <thead>
             <tr>
               <th>Nome</th>
-              <th>Veiculos</th>
+              <th>Veículos</th>
               <th>Celular</th>
               <th>E-mail</th>
               <th>Ativo</th>
@@ -140,9 +165,15 @@ function CadastroCliente() {
             {filteredClientes.length > 0 ? (
               filteredClientes.map((cliente) => (
                 <tr key={cliente.id_cliente}>
-                  <td>{cliente.nome}</td>
-                  <td id='coluna-veiculos'>{cliente._count.veiculos}
-                    <div className="add-veiculo"><i class="fas fa-car"></i> <i class="fas fa-plus-circle"></i>
+                  <td id='nome-cliente'>
+                    <Link to={`/${cliente.id_cliente}/veiculos`}>{cliente.nome}</Link>
+                  </td>
+                  <td id='coluna-veiculos'>
+                    <Link to={`/${cliente.id_cliente}/veiculos`}>{cliente._count.veiculos}</Link>
+                    <div className="add-veiculo">
+                      <button onClick={() => abrirAddVeiculo(cliente)} id='add-veiculo'>
+                        <i className="fas fa-car"></i> <i className="fas fa-plus-circle"></i>
+                      </button>
                     </div>
                   </td>
                   <td>{cliente.celular}</td>
@@ -160,7 +191,7 @@ function CadastroCliente() {
               ))
             ) : (
               <tr>
-                <td colSpan="5">Nenhum cliente encontrado.</td>
+                <td colSpan="6">Nenhum cliente encontrado.</td>
               </tr>
             )}
           </tbody>
@@ -178,7 +209,7 @@ function CadastroCliente() {
         pauseOnHover
       />
     </div>
-  )
+  );
 }
 
 export default CadastroCliente;

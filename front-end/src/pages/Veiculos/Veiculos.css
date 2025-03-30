@@ -1,0 +1,57 @@
+.veiculos-wrapper {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+.veiculos-page {
+    padding: 20px;
+    margin: 40px;
+    border: 2px solid #898989;
+    background-color: #89898928;
+    width: 90%; 
+    text-align: center;
+}
+h1{
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.veiculos-table {
+    margin-top: 20px;
+    margin: 0 auto; /* Centraliza a tabela */
+    overflow-x: auto; /* Permite rolagem horizontal em telas pequenas */
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse; /* Remove o espaçamento entre as bordas */
+}
+
+
+.veiculos-table th,
+.veiculos-table td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Bordas da tabela */
+    
+}
+
+.veiculos-table th {
+    background-color: #898989; /* Cor de fundo dos cabeçalhos */
+}
+
+.veiculos-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alterna a cor de fundo das linhas pares */
+}
+
+.veiculos-table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+#excluir-veiculo {
+    cursor: pointer;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 5px;
+}

@@ -14,17 +14,30 @@ class CreateVeiculoController {
 
     const createVeiculoService = new CreateVeiculoService();
 
-    const veiculo = await createVeiculoService.execute({
-      id_cliente,
-      placa,
-      marca,
-      modelo,
-      ano: anoNumero,
-      cor,
-      quilometragem: quilometragemNumero,
-    });
+    try {
+      const veiculo = await createVeiculoService.execute({
+        id_cliente,
+        placa,
+        marca,
+        modelo,
+        ano: anoNumero,
+        cor,
+        quilometragem: quilometragemNumero,
+      });
+      return res.status(200).json({
+        success: true,
+        message: 'Cadastro realizado!',
+        data: veiculo
+    })
+    } catch(error: Error | any) {
+      return res.status(400).json({
+        success: false,
+        message: error.message || "Erro ao cadastrar veiculo!",
+      })
+    }
 
-    return res.json(veiculo);
+
+    
   }
 }
 

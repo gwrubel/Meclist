@@ -1,29 +1,15 @@
-import prismaClient from "../../prisma";
 
+import { IClienteRepository } from "../../interface/IClienteRepository";
 
 class ListClienteService {
-
+     private clienteRepository: IClienteRepository;
+    
+        constructor(clienteRepository: IClienteRepository) {
+            this.clienteRepository = clienteRepository;
+        }
+    
     async execute() {
-
-        const clientes = await prismaClient.cliente.findMany({
-            select: {
-                id_cliente: true,
-                nome: true,
-                email: true,
-                celular: true,
-                endereco: true,
-                ativo: true,
-                 _count:{
-                    select: {
-                        veiculos: true,
-                    }
-                 }
-            }
-
-            
-        });
-        
-        return clientes;
+       return await this.clienteRepository.listarClientes();
 }   
 }
 export { ListClienteService }

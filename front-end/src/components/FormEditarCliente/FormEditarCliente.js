@@ -165,6 +165,18 @@ function FormEditarCliente({ id_cliente, onClose, onSuccess }) {
                             required
                         />
                     </div>
+                    <div className="input-container-edit">
+                            <label>Status:</label>
+                            <select
+                                name="ativo"
+                                value={formData.ativo ? "true" : "false"}
+                                onChange={(e) => setFormData({ ...formData, ativo: e.target.value === "true" })}
+                                required
+                            >
+                                <option value="true">Ativo</option>
+                                <option value="false">Inativo</option>
+                            </select>
+                        </div>
 
                     <div className="form-buttons">
                         <button type="submit" id="salvar">Salvar Alterações</button>

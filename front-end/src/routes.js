@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 
 import LoginScreen from "./pages/Login/LoginScreen";
 import Dashboard from "./pages/Home/Dashboard";
@@ -6,14 +7,18 @@ import Header from "./components/Header/Header";
 import CadastroMecanico from "./pages/CadastroMecanico/CadastroMecanico";
 import PrivateRoute from "./PrivateRoute";
 import CadastroCliente from "./pages/CadastroCliente/CadastroCliente";
-
+import Veiculos from "./pages/Veiculos/Veiculos";
+import Checklist from "./pages/Checklist/Checklist";
 
 function RoutesApp() {
+
+
     return (
-        <BrowserRouter>
+
+
+        <div>
             <Routes>
                 <Route path="/" element={<LoginScreen />} />
-
                 <Route
                     path="/dashboard"
                     element={
@@ -23,7 +28,6 @@ function RoutesApp() {
                         </PrivateRoute>
                     }
                 />
-
                 <Route
                     path="/cadastro-mecanico"
                     element={
@@ -33,7 +37,6 @@ function RoutesApp() {
                         </PrivateRoute>
                     }
                 />
-
                 <Route
                     path="/cadastro-cliente"
                     element={
@@ -43,11 +46,29 @@ function RoutesApp() {
                         </PrivateRoute>
                     }
                 />
-
+                <Route
+                    path="/Checklist"
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <Checklist />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/:id_cliente/veiculos"
+                    element={
+                        <PrivateRoute>
+                            <Header />
+                            <Veiculos />
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
+        </div>
 
-        </BrowserRouter>
-    )
+
+    );
 }
 
 export default RoutesApp;

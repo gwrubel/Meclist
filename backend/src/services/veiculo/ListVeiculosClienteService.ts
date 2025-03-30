@@ -5,6 +5,13 @@ class ListVeiculosClienteService {
         const veiculos = await prismaClient.veiculo.findMany({
             where: {
                 id_cliente: id_cliente
+            },
+            include: {
+                Cliente: {
+                    select: {
+                        nome: true,
+                    }
+                }
             }
         })
         return veiculos

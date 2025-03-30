@@ -48,7 +48,7 @@ function Header() {
       <header className="header">
         <div className="nav-container">
           <NavLink to="/dashboard">Início</NavLink>
-          <NavLink to="/servicos">Serviços</NavLink>
+          <NavLink to="/checklist">Checklist</NavLink>
 
           <div className="dropdown">
             <button onClick={() => setCadastroOpen(!isCadastroOpen)}>

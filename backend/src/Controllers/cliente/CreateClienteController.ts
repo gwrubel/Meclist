@@ -1,12 +1,14 @@
 import { Request,Response } from "express";
 import { CreateClienteService } from "../../services/cliente/CreateClienteService";
+import { ClienteRepository } from "../../repository/ClienteRepository";
 
 class CreateClienteController {
     async handle(req: Request, res: Response) {
 
         const { nome, cpf, endereco, celular, email, senha } = req.body;
 
-        const createClienteService = new CreateClienteService();
+        const clienteRepository = new ClienteRepository();
+        const createClienteService = new CreateClienteService(clienteRepository);
 
         try {
             const cliente = await createClienteService.execute({

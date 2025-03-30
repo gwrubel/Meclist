@@ -167,8 +167,8 @@ function FormEditarMecanico({ id_mecanico, onClose, onSucces }) {
                             <CelularInput
                                 name="celular"
                                 id="celular"
-                                value={formData.celular || ''} // Use a string vazia se não houver valor
-                                onChange={handleCelularChange} // Passa a nova função para tratar mudanças
+                                value={formData.celular || ''} 
+                                onChange={handleCelularChange} 
                                 required
                             />
                         </div>
